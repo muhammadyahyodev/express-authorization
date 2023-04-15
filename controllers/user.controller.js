@@ -212,6 +212,10 @@ const deleteUserById = async (req, res) => {
 
     const user = await User.findById(id);
 
+    // if (req.user.id !== req.params.id) {
+    //   return res.send({ message: "Sizga ruxsat yo'q!" });
+    // }
+
     if (!user) {
       return res.send(400, { friendlyMsg: "Information was not found" });
     }

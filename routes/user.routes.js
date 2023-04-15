@@ -1,4 +1,7 @@
 const { Router } = require("express");
+const Validator = require("../middlewares/validator");
+const UserPolice = require("../middlewares/userPolice");
+
 const {
   signUp,
   signIn,
@@ -13,10 +16,10 @@ const router = Router();
 
 router.get("/", getUsers);
 router.get("/:id", getUserById);
-router.post("/signup", signUp);
-router.post("/signin", signIn);
+router.post("/signup", Validator("signup"), signUp);
+router.post("/signin", Validator("login"), signIn);
 router.post("/logout", logout);
-router.patch("/:id", updateUserById);
-router.delete("/:id", deleteUserById);
+router.patch("/:id", UserPolice, Validator("update"), updateUserById);
+router.delete("/:id", UserPolice, deleteUserById);
 
 module.exports = router;
