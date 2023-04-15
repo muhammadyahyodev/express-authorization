@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes/index.routes");
 const PORT = config.get("port") || 7070;
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = require("./swagger.json");
+const swaggerJsdoc = require("swagger-jsdoc");
 
 const app = express();
 
@@ -14,9 +14,28 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Swagger documentation for an ExpressJS application",
+      version: "1.0.0",
+      description: "API documentation for an ExpressJS application",
+    },
+    servers: [
+      {
+        url: "http://localhost:8080/api",
+      },
+    ],
+  },
+  apis: ["./routes/*.js", "./controllers/*.js"], // User folder yaratish bilan bog'liq
+};
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 app.use(routes);
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 async function start() {
   try {
     await mongoose.connect(config.get("dbUri"));
