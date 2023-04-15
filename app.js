@@ -5,6 +5,8 @@ const config = require("config");
 const mongoose = require("mongoose");
 const routes = require("./routes/index.routes");
 const PORT = config.get("port") || 7070;
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 const app = express();
 
@@ -14,6 +16,7 @@ app.use(cors());
 
 app.use(routes);
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 async function start() {
   try {
     await mongoose.connect(config.get("dbUri"));
