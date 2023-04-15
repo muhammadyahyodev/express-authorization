@@ -18,7 +18,7 @@ const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Swagger documentation for an ExpressJS application",
+      title: "Nodejs, Expressjs, MongoDB, Mongoose, Swagger",
       version: "1.0.0",
       description: "API documentation for an ExpressJS application",
     },
