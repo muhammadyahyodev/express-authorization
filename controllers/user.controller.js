@@ -336,6 +336,10 @@ const deleteUserById = async (req, res) => {
   try {
     const { id } = req.params;
 
+    if (!mongoose.isValidObjectId(`${id}`)) {
+      return res.status(400).send({ message: "Canceled, Invalid ID sent" });
+    }
+
     const user = await User.findById(id);
 
     // if (req.user.id !== req.params.id) {
@@ -343,7 +347,7 @@ const deleteUserById = async (req, res) => {
     // }
 
     if (!user) {
-      return res.send(400, { friendlyMsg: "Information was not found" });
+      return res.status(400).send({ friendlyMsg: "Information was not found" });
     }
 
     await User.findByIdAndDelete(id);

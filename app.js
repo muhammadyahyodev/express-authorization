@@ -34,7 +34,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.use(routes);
+app.use("/api", routes);
 
 async function start() {
   try {
