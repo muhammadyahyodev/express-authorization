@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const Validator = require("../middlewares/validator");
+
 const {
   getProducts,
   getProductById,
@@ -11,8 +13,8 @@ const router = Router();
 
 router.get("/", getProducts);
 router.get("/:id", getProductById);
-router.post("/", createProduct);
-router.put("/:id", updateProductById);
+router.post("/", Validator("createProduct"), createProduct);
+router.put("/:id", Validator("updateProduct"), updateProductById);
 router.delete("/:id", deleteProductById);
 
 module.exports = router;
