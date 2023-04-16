@@ -3,10 +3,10 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const config = require("config");
 const mongoose = require("mongoose");
-const routes = require("./routes/index.routes");
-const PORT = config.get("port") || 7070;
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
+const routes = require("./routes/index.routes");
+const PORT = config.get("port") || 7070;
 
 const app = express();
 
