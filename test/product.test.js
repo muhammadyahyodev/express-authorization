@@ -1,6 +1,5 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
-const should = chai.should();
 const mongoose = require("mongoose");
 const app = require("../app");
 const expect = require("chai").expect;
@@ -8,7 +7,7 @@ const Product = require("../models/Product.model");
 
 chai.use(chaiHttp);
 
-describe("Products", () => {
+describe("Testing products service", () => {
   before(async () => {
     await mongoose.connect("mongodb://localhost:27017/test", {
       useNewUrlParser: true,
