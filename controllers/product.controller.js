@@ -1,5 +1,6 @@
 const Product = require("../models/Product.model");
 const ApiError = require("../errors/ApiError");
+const mongoose = require("mongoose");
 
 const createProduct = async (req, res) => {
   try {

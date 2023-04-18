@@ -5,12 +5,14 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "mocha"
+    "test": "mocha ./test --timeout 10000"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "config": "^3.3.9",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -23,6 +25,8 @@
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
     "mongoose": "^7.0.3",
+    "sinon": "^15.0.3",
+    "supertest": "^6.3.3",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.2",
     "uuid": "^9.0.0",
