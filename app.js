@@ -10,10 +10,6 @@ const PORT = config.get("port") || 7070;
 
 const app = express();
 
-app.use(express.json());
-app.use(cookieParser());
-app.use(cors());
-
 const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
@@ -24,7 +20,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:8080/api",
+        url: `http://localhost:${PORT}/api`,
       },
     ],
     components: {
@@ -42,6 +38,10 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors());
 
 app.use("/api", routes);
 
