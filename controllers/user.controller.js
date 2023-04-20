@@ -158,7 +158,7 @@ const logout = async (req, res) => {
     const { token } = req.cookies;
 
     if (!token) {
-      return res.status(400).send({ message: "Token is does exists" });
+      return res.status(400).send({ message: "Token does not exist" });
     }
 
     const user = await User.findOneAndUpdate(
@@ -168,7 +168,7 @@ const logout = async (req, res) => {
     );
 
     if (!user) {
-      return res.status(400).send({ message: "Token is does exists" });
+      return res.status(400).send({ message: "Token is invalid token" });
     }
 
     res.clearCookie("token");
@@ -289,7 +289,8 @@ const updateUserById = async (req, res) => {
       return res.status(400).send({ message: "User is does not exists" });
     }
 
-    const { full_name, email, password } = req.body;
+    const { full_name, email } = req.body;
+    let { password } = req.body;
 
     if (password) {
       password = bcrypt.hashSync(password, 7);
@@ -347,7 +348,7 @@ const deleteUserById = async (req, res) => {
     // }
 
     if (!user) {
-      return res.status(400).send({ friendlyMsg: "Information was not found" });
+      return res.status(400).send({ message: "User was not found" });
     }
 
     await User.findByIdAndDelete(id);

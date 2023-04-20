@@ -32,7 +32,7 @@ module.exports = async function (req, res, next) {
 
     req.user = decodedData;
 
-    if (decodedData.id === id) {
+    if (decodedData.id !== id) {
       return res
         .status(403)
         .json({ message: "Error: the JWT is not owned by the admin" });

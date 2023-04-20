@@ -26,7 +26,6 @@ class JwtService {
    * @returns {*}
    */
   async verifyAccess(token) {
-    console.log("TOKEN: ", token);
     return jwt.verify(token, this.tokenKey, {});
   }
 
