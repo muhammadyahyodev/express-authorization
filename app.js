@@ -27,8 +27,17 @@ const swaggerOptions = {
         url: "http://localhost:8080/api",
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
   },
-  apis: ["./routes/*.js", "./controllers/*.js"], // User folder yaratish bilan bog'liq
+  apis: ["./routes/*.js", "./controllers/*.js"],
 };
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
